@@ -10,15 +10,14 @@ Highcharts.createElement('link', {
 	type: 'text/css'
 }, null, document.getElementsByTagName('head')[0]);
 
+
 Highcharts.theme = {
-
-	colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
-
+	colors: ["#7CB5EC","#434348"],
+		
 	chart: {
 		backgroundColor: null,
 		style: {
-			// fontFamily: "Signika, serif"
-			//fontFamily: "'Unica One', sans-serif"
+
 			fontFamily: "Dosis, sans-serif"
 		}
 	},
@@ -84,8 +83,7 @@ Highcharts.theme = {
 	},
 	plotOptions: {
 		series: {
-			shadow: false,
-			borderWidth: 0
+			shadow: true
 		},
 		candlestick: {
 			lineColor: '#404048'
@@ -117,10 +115,12 @@ Highcharts.theme = {
 		trackBorderColor: '#C0C0C8'
 	},
 
+	// General
 	background2: '#E0E0E8'
 
 };
 
+// Apply the theme
 Highcharts.setOptions(Highcharts.theme);
 
 Highcharts.setOptions({lang: {
