@@ -21,13 +21,20 @@ app.service('LineChartService',function(){
             text: 'Loan Repayment'
         },
         //colors: ['#989898', '#0d2f47', '#195c8d', '#1a74b7', '#2599f0'],
-      colors: ['#195c8d', '#0d2f47',   '#1a74b7', '#2599f0'],
+      colors: ['#989898', '#0d2f47',   '#1a74b7', '#2599f0'],
         exporting:{
             enabled:false
         },
 
         xAxis: {
-            categories: ["Loan 1","Loan 2"]
+            categories: ["Loan 1","Loan 2"],
+            labels: {
+
+                style: {
+                    'fontSize': '17px',
+                    'font-weight':'bold'
+                }
+            }
         },
         yAxis: {
           allowDecimals: true,
@@ -66,13 +73,13 @@ app.service('LineChartService',function(){
         }
         },
 
-        series: [  {  //totalPrincipal, totalInterest
-            name: 'Total Principal',
-            data: totalPrincipal,
-            stack: 'female'
-        }, {
+        series: [   {
             name: 'Total Interest',
             data:  totalInterest,
+            stack: 'female'
+        },{
+            name: 'Total Principal',
+            data: totalPrincipal,
             stack: 'female'
         }]
 

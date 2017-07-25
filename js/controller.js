@@ -361,7 +361,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.IntroductoryRate1,
         range: {
             min: [0],
-            max: [100]
+            max: [15]
         },
         format: wNumb({
             decimals: 2,
@@ -392,7 +392,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.IntroductoryRate2,
         range: {
             min: [0],
-            max: [100]
+            max: [15]
         },
         format: wNumb({
             decimals: 2,
@@ -422,7 +422,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.upfrontFeesInpu2,
         range: {
             min: [100],
-            max: [1000000]
+            max: [10000]
         },
         format: wNumb({
             decimals: 0,
@@ -454,7 +454,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.loanAmount,
         range: {
             min: [1000],
-            max: [1000000]
+            max: [3000000]
         },
         format: wNumb({
             decimals: 0,
@@ -483,7 +483,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.ongoingFees1,
         range: {
             min: [0],
-            max: [1000000]
+            max: [10000]
         },
         format: wNumb({
             decimals: 0,
@@ -512,7 +512,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.upfrontFees1,
         range: {
           min: [100],
-          max: [1000000]
+          max: [10000]
         },
         format: wNumb({
             decimals: 0,
@@ -546,7 +546,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.ongoingRate1,
         range: {
           min: [0],
-          max: [100]
+          max: [15]
         },
         format: wNumb({
             decimals: 2,
@@ -579,7 +579,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.IntroductoryTerm1,
         range: {
           min: [0],
-          max: [100]
+          max: [4]
         },
         format: wNumb({
             decimals: 0,
@@ -608,7 +608,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.ongoingRate2,
         range: {
           min: [0],
-          max: [100]
+          max: [15]
         },
         format: wNumb({
             decimals: 2,
@@ -637,7 +637,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.introductoryTerm2,
         range: {
           min: [0],
-          max: [100]
+          max: [4]
         },
         format: wNumb({
             decimals: 0,
@@ -665,7 +665,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
         start: $scope.ongoingFees2,
         range: {
           min: [0],
-          max: [1000000]
+          max: [10000]
         },
         format: wNumb({
             decimals: 0,
@@ -727,8 +727,11 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
           $scope.DoesThisLoanHasAnIntroductoryRateLoan1 = "Yes";
         }else{
           $scope.DoesThisLoanHasAnIntroductoryRateLoan1 = "No";
+          $scope.IntroductoryTerm1 = 0;
+          IntroductoryTermSlider1.noUiSlider.set($scope.IntroductoryTerm1);
         }
         $scope.yesNoQuestion1 = getReply;
+        //alert($scope.yesNoQuestion1)
         //console.log("first",$scope.DoesThisLoanHasAnIntroductoryRateLoan1)
       }
 
@@ -737,6 +740,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
           $scope.DoesThisLoanHasAnIntroductoryRateLoan2 = "Yes";
         }else{
           $scope.DoesThisLoanHasAnIntroductoryRateLoan2 = "No";
+          $scope.IntroductoryTerm2 = 0;
+          IntroductoryTermSlider2.noUiSlider.set($scope.IntroductoryTerm2);
         }
         $scope.yesNoQuestion2 = getReply2;
         //console.log("second",$scope.DoesThisLoanHasAnIntroductoryRateLoan2)
