@@ -1,5 +1,65 @@
-app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMaker', 'LineChartService', function($scope, $timeout, AgeCalculator, PdfMaker, LineChartService) {
+app.controller("calculatorInfoContoller",["$scope","$uibModalInstance",function($scope, $uibModalInstance){
+   var $ctrlInfo = this;
 
+    $ctrlInfo.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
+}])
+
+app.controller("validationModalController",["$scope","$uibModalInstance","LCCForm",function($scope, $uibModalInstance, LCCForm){
+    var $ctrl = this;
+    $ctrl.LCCForm = LCCForm;
+    $ctrl.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
+}])
+
+
+app.controller("LCCcontroller", ['$scope', '$uibModal',  '$timeout', 'AgeCalculator', 'PdfMaker', 'LineChartService', function($scope, $uibModal, $timeout, AgeCalculator, PdfMaker, LineChartService) {
+
+  //validation modal
+  $scope.openValidationModal = function () {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'validationModal.html',
+          controller: 'validationModalController',
+          controllerAs: '$ctrl',
+          size: 'md',
+          resolve: {
+            LCCForm: function () {
+              return $scope.forms.LCCForm;
+            }
+          }
+        });
+
+        modalInstance.result.then(function () {
+        }, function () {
+            console.log('else condition in modal');
+        });
+      };
+
+  //calculator information
+    $scope.calculatorInfoModal = function () {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'calculatorInfoPage.html',
+          controller: 'calculatorInfoContoller',
+          controllerAs: '$ctrlInfo',
+          size: 'md'
+        });
+
+        modalInstance.result.then(function () {
+        }, function () {
+            console.log('else condition in modal');
+        });
+
+      };
+
+/*
   $scope.infoShow = function(value) {
       if (value) {
           document.getElementsByClassName("information-overlay")[0].style.visibility = "visible";
@@ -10,6 +70,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
           document.getElementsByClassName("information-overlay")[0].style.visibility = "hidden";
       }
   }
+  */
+
 
 
 
@@ -1169,7 +1231,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
          LineChartService.createChart(totalPrincipal, totalInterest, [0,2,4,6,8]);
       }else {
         //alert('else')
-            $("#myModal").modal('show');
+          //  $("#myModal").modal('show');
+            $scope.openValidationModal();
             $("html, body").animate({ scrollTop: 0 }, "slow");
         }
 
@@ -1181,7 +1244,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
 
     //download button click
     document.getElementById("download").addEventListener("click", function() {
-        if ($scope.forms.ttrForm.$valid) {
+        if ($scope.forms.LCCForm.$valid) {
             var normalDetails = {
                 firstName: $scope.personalDetails.firstName,
                 lastName: $scope.personalDetails.lastName,
@@ -1193,7 +1256,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
 
             PdfMaker.createChart(normalDetails);
         } else {
-            $("#myModal").modal('show');
+            //$("#myModal").modal('show');
+            $scope.openValidationModal();
         }
     });
     //print section
@@ -1202,7 +1266,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
 
     function printAllCharts() {
 
-        if ($scope.forms.ttrForm.$valid) {
+      if ($scope.forms.LCCForm.$valid) {
 
             var printUpdate = function() {
                 $('#container').highcharts().reflow();
@@ -1222,7 +1286,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'PdfMake
 
 
         } else {
-            $("#myModal").modal('show');
+            //$("#myModal").modal('show');
+            $scope.openValidationModal();
             $("html, body").animate({ scrollTop: 0 }, "slow");
         }
     };
